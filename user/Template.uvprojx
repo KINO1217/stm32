@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS</IncludePath>
+              <IncludePath>..\CMSIS;..\fwlibs;..\config;..\drivers</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,7 +393,34 @@
           <GroupName>driver</GroupName>
         </Group>
         <Group>
+          <GroupName>config</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32f10x_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\config\stm32f10x_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>clock_conf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\config\clock_conf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>fwlibs</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fwlibs\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fwlibs\stm32f10x_rcc.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>CMSIS</GroupName>
@@ -412,11 +439,6 @@
               <FileName>stm32f10x.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\CMSIS\stm32f10x.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\CMSIS\stm32f10x_conf.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f10x.c</FileName>
