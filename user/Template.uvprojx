@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS;..\fwlibs;..\config;..\drivers</IncludePath>
+              <IncludePath>..\CMSIS;..\fwlibs;..\config;..\drivers;..\sys</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -391,18 +391,6 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
-          <Files>
-            <File>
-              <FileName>switch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\switch.c</FilePath>
-            </File>
-            <File>
-              <FileName>key_board.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\key_board.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>
@@ -421,6 +409,21 @@
               <FileName>driver_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\config\driver_conf.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>sys</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sys\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\sys\sys.h</FilePath>
             </File>
           </Files>
         </Group>
