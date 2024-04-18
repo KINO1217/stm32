@@ -3,6 +3,8 @@
 #include "string.h"
 #include "delay.h"
 #include "sys.h"
+#include "stdio.h"
+#include "my_uart.h"
 /**********************ALL******************/
 //#define SWITCH_DRIVER_ENABLE
 #define KEY_BOARD_DRIVER_ENABLE
