@@ -9,6 +9,7 @@
 /**********************ALL******************/
 //#define SWITCH_DRIVER_ENABLE
 //#define KEY_BOARD_DRIVER_ENABLE
+//#define DS18B20_DRIVER_ENABLE
 
 /*********************IIC*****************/
 //#define OLED_DRIVER_ENABLE
@@ -20,6 +21,10 @@
 
 #ifdef KEY_BOARD_DRIVER_ENABLE
     #include "key_board.h"
+#endif
+
+#ifdef DS18B20_DRIVER_ENABLE
+    #include "ds18b20.h"
 #endif
 
 /*********************IIC*****************/
