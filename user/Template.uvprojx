@@ -391,18 +391,6 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
-          <Files>
-            <File>
-              <FileName>key_board.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\key_board.c</FilePath>
-            </File>
-            <File>
-              <FileName>switch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\switch.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>
@@ -441,6 +429,11 @@
               <FileName>my_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\sys\my_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>my_iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sys\my_iic.c</FilePath>
             </File>
           </Files>
         </Group>

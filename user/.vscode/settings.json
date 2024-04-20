@@ -9,6 +9,7 @@
     },
     "hide-files.files": [],
     "files.associations": {
-        "stm32f10x.h": "c"
+        "stm32f10x.h": "c",
+        "oled_font.h": "c"
     }
 }

@@ -5,9 +5,13 @@
 #include "sys.h"
 #include "stdio.h"
 #include "my_uart.h"
+#include "my_iic.h"
 /**********************ALL******************/
 //#define SWITCH_DRIVER_ENABLE
-#define KEY_BOARD_DRIVER_ENABLE
+//#define KEY_BOARD_DRIVER_ENABLE
+
+/*********************IIC*****************/
+//#define OLED_DRIVER_ENABLE
 
 /**********************ALL******************/
 #ifdef SWITCH_DRIVER_ENABLE
@@ -17,4 +21,10 @@
 #ifdef KEY_BOARD_DRIVER_ENABLE
     #include "key_board.h"
 #endif
+
+/*********************IIC*****************/
+#ifdef OLED_DRIVER_ENABLE
+    #include "oled.h"
+#endif
+
 #endif
