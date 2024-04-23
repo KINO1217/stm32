@@ -65,7 +65,7 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
             NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
             NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
-            NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
+            NVIC_InitStruct.NVIC_IRQChannelSubPriority = 3;
             NVIC_Init(&NVIC_InitStruct);
 
             if(recvMode == ISR_MODE)

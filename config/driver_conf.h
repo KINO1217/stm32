@@ -15,6 +15,9 @@
 /*********************IIC*****************/
 //#define OLED_DRIVER_ENABLE
 
+/*********************UART*****************/
+//#define ESP8266_DRIVER_ENABLE
+
 /**********************ALL******************/
 #ifdef SWITCH_DRIVER_ENABLE
     #include "switch.h"
@@ -35,6 +38,11 @@
 /*********************IIC*****************/
 #ifdef OLED_DRIVER_ENABLE
     #include "oled.h"
+#endif
+
+/*********************UART*****************/
+#ifdef ESP8266_DRIVER_ENABLE
+    #include "esp8266.h"
 #endif
 
 #endif
