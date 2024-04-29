@@ -7,40 +7,40 @@ typedef struct __OLED c_oled;
 typedef struct __OLED
 {
     /**
-     * æ¸…å±å‡½æ•°
-     * ç¤ºä¾‹ï¼š
+     * ÇåÆÁº¯Êı
+     * Ê¾Àı£º
         oled.clear();
     */
     void (*clear)(void);
     /**
-     * å¼€æ˜¾ç¤º
-     * ç¤ºä¾‹ï¼š
+     * ¿ªÏÔÊ¾
+     * Ê¾Àı£º
         oled.openDisplay();
     */
     void (*openDisplay)(void);
     /**
-     * å…³æ˜¾ç¤º
-     * ç¤ºä¾‹ï¼š
+     * ¹ØÏÔÊ¾
+     * Ê¾Àı£º
         oled.closeDisplay();
     */
     void (*closeDisplay)(void);
     /**
-     * æ˜¾ç¤ºå­—ç¬¦ä¸²
-     * ç¤ºä¾‹ï¼š
+     * ÏÔÊ¾×Ö·û´®
+     * Ê¾Àı£º
         oled.showString(0,0,"Hello World!");
     */
     void (*showString)(u8 row,u8 col,u8 *str,...);
     /**
-     * æ˜¾ç¤ºä¸­æ–‡
-     * ç¤ºä¾‹ï¼š
-        oled.showChinese(0,0,"ä½ å¥½");
+     * ÏÔÊ¾ÖĞÎÄ
+     * Ê¾Àı£º
+        oled.showChinese(0,0,"ÄãºÃ");
     */
     void (*showChinese)(u8 row,u8 col,u8 *str);
 }c_oled;
 
 /**
- * åˆ›å»ºc_oledå¯¹è±¡
- * ç¤ºä¾‹ï¼š
+ * ´´½¨c_oled¶ÔÏó
+ * Ê¾Àı£º
     c_my_iic oled_iic = {0};
     c_oled oled = {0};
 

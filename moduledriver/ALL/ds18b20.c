@@ -25,7 +25,7 @@ c_ds18b20 ds18b20_create(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
     c_ds18b20 new = {0};
 
-    // åˆå§‹åŒ–GPIOå£ä¸ºè¾“å‡ºæ¨¡å¼
+    // ³õÊ¼»¯GPIO¿ÚÎªÊä³öÄ£Ê½
     GPIO_InitTypeDef GPIO_InitStruct;
     GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
@@ -42,7 +42,7 @@ c_ds18b20 ds18b20_create(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 }
 
 /**
- * è®¾ç½®ä¿¡å·çº¿æ¨¡å¼
+ * ÉèÖÃĞÅºÅÏßÄ£Ê½
 */
 static void vDQLineMode(const c_ds18b20 *this,u8 mode)
 {
@@ -53,7 +53,7 @@ static void vDQLineMode(const c_ds18b20 *this,u8 mode)
     switch(mode)
     {
         case DQLINE_MODE_INPUT:
-            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;  //ä¸Šæ‹‰è¾“å…¥
+            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;  //ÉÏÀ­ÊäÈë
             GPIO_InitStruct.GPIO_Pin = m_this->GPIO_Pin;
             GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
             GPIO_Init(m_this->GPIOx,&GPIO_InitStruct);
@@ -68,7 +68,7 @@ static void vDQLineMode(const c_ds18b20 *this,u8 mode)
 }
 
 /**
- * å¤ä½åˆå§‹åŒ–
+ * ¸´Î»³õÊ¼»¯
 */
 static u8 pDS18B20Reset(const c_ds18b20 *this)
 {
@@ -95,7 +95,7 @@ static u8 pDS18B20Reset(const c_ds18b20 *this)
 }
 
 /**
- * å†™å…¥ä¸€ä¸ªå­—èŠ‚å‡½æ•°
+ * Ğ´ÈëÒ»¸ö×Ö½Úº¯Êı
 */
 static void vDS18B20WriteByte(const c_ds18b20 *this,u8 data)
 {
@@ -120,7 +120,7 @@ static void vDS18B20WriteByte(const c_ds18b20 *this,u8 data)
 }
 
 /**
- * è¯»å–ä¸€ä¸ªå­—èŠ‚å‡½æ•°
+ * ¶ÁÈ¡Ò»¸ö×Ö½Úº¯Êı
 */
 static u8 pDS18B20ReadByte(const c_ds18b20 *this)
 {

@@ -19,23 +19,23 @@ c_my_iic iic_create(GPIO_TypeDef* SDA_GPIOx,uint16_t SDA_Pin,GPIO_TypeDef* SCL_G
 {
     c_my_iic new = {0};
 
-    // åˆå§‹åŒ–GPIOå£
+    // ³õÊ¼»¯GPIO¿Ú
     GPIO_InitTypeDef GPIO_InitStruct;
     GPIO_InitStruct.GPIO_Pin = SDA_Pin;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//æŽ¨æŒ½è¾“å‡ºæ¨¡å¼
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//é«˜é€Ÿæ¨¡å¼
+    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//ÍÆÍìÊä³öÄ£Ê½
+    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//¸ßËÙÄ£Ê½
     GPIO_Init(SDA_GPIOx,&GPIO_InitStruct);
 
     GPIO_InitStruct.GPIO_Pin = SCL_Pin;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//æŽ¨æŒ½è¾“å‡ºæ¨¡å¼
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//é«˜é€Ÿæ¨¡å¼
+    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//ÍÆÍìÊä³öÄ£Ê½
+    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//¸ßËÙÄ£Ê½
     GPIO_Init(SCL_GPIOx,&GPIO_InitStruct);
 
-    // è®¾ç½®é»˜è®¤å€¼
+    // ÉèÖÃÄ¬ÈÏÖµ
     GPIO_SetBits(SDA_GPIOx,SDA_Pin);
     GPIO_SetBits(SDA_GPIOx,SDA_Pin);
 
-    // è®¾ç½®c_my_iicç»“æž„ä½“å˜é‡
+    // ÉèÖÃc_my_iic½á¹¹Ìå±äÁ¿
     new.this = malloc(sizeof(m_iic));
     memset(new.this,0,sizeof(m_iic));
     ((m_iic*)new.this)->SDA_GPIOx = SDA_GPIOx;
@@ -61,14 +61,14 @@ static void sdaLineMode(const c_my_iic *this,u8 mode)
     {
         case GPIO_MODE_INPUT:
             GPIO_InitStruct.GPIO_Pin = m_this->SDA_Pin;
-            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;//ä¸Šæ‹‰è¾“å…¥æ¨¡å¼
-            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//é«˜é€Ÿæ¨¡å¼
+            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;//ÉÏÀ­ÊäÈëÄ£Ê½
+            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//¸ßËÙÄ£Ê½
             GPIO_Init(m_this->SDA_GPIOx,&GPIO_InitStruct);
             break;
         case GPIO_MODE_OUTPUT:
             GPIO_InitStruct.GPIO_Pin = m_this->SDA_Pin;
-            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//æŽ¨æŒ½è¾“å‡ºæ¨¡å¼
-            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//é«˜é€Ÿæ¨¡å¼
+            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//ÍÆÍìÊä³öÄ£Ê½
+            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//¸ßËÙÄ£Ê½
             GPIO_Init(m_this->SDA_GPIOx,&GPIO_InitStruct);
             break;
     }
@@ -76,7 +76,7 @@ static void sdaLineMode(const c_my_iic *this,u8 mode)
 
 static void start(const c_my_iic *this)
 {
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAçº¿ä¸ºè¾“å‡ºæ¨¡å¼
+    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAÏßÎªÊä³öÄ£Ê½
     
     m_iic *m_this = NULL;
     m_this = this->this;
@@ -90,7 +90,7 @@ static void start(const c_my_iic *this)
 
 static void stop(const c_my_iic *this)
 {
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAçº¿ä¸ºè¾“å‡ºæ¨¡å¼
+    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAÏßÎªÊä³öÄ£Ê½
     
     m_iic *m_this = NULL;
     m_this = this->this;
@@ -105,7 +105,7 @@ static void stop(const c_my_iic *this)
 static u8 checkAck(const c_my_iic *this)
 {
     u8 ack = 0;
-    this->sdaLineMode(this,GPIO_MODE_INPUT); //SDAçº¿ä¸ºè¾“å…¥æ¨¡å¼
+    this->sdaLineMode(this,GPIO_MODE_INPUT); //SDAÏßÎªÊäÈëÄ£Ê½
     
     m_iic *m_this = NULL;
     m_this = this->this;
@@ -126,7 +126,7 @@ static u8 checkAck(const c_my_iic *this)
 static void sendByteData(const c_my_iic *this,u8 data)
 {
     u8 i = 0;
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAçº¿ä¸ºè¾“å‡ºæ¨¡å¼
+    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDAÏßÎªÊä³öÄ£Ê½
 
     m_iic *m_this = NULL;
     m_this = this->this;

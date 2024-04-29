@@ -39,7 +39,7 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
     switch (uartId)
     {
         case MY_UART_ID_USART1:
-            //ÈÖçÁΩÆGPIOÁ´ØÂè£
+            //≈‰÷√GPIO∂Àø⁄
             GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
             GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -49,7 +49,7 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
             GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-            //ÂàùÂßãÂåñ‰∏≤Âè£1
+            //≥ı ºªØ¥Æø⁄1
             USART_InitStruct.USART_BaudRate = band;
             USART_InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
             USART_InitStruct.USART_WordLength = USART_WordLength_8b;
@@ -58,10 +58,10 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
             USART_Init(USART1, &USART_InitStruct);
 
-            //‰ΩøËÉΩ‰∏≤Âè£1
+            // πƒ‹¥Æø⁄1
             USART_Cmd(USART1, ENABLE);
 
-            //ÈÖçÁΩÆ‰∏≠Êñ≠NVIC
+            //≈‰÷√÷–∂œNVIC
             NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
             NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
             NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
@@ -70,12 +70,12 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
 
             if(recvMode == ISR_MODE)
             {
-                USART_ITConfig(USART1, USART_IT_RXNE, ENABLE); // Êé•Êî∂‰∏≠Êñ≠
-                USART_ITConfig(USART1, USART_IT_IDLE, ENABLE); // Á©∫Èó≤‰∏≠Êñ≠
+                USART_ITConfig(USART1, USART_IT_RXNE, ENABLE); // Ω” ’÷–∂œ
+                USART_ITConfig(USART1, USART_IT_IDLE, ENABLE); // ø’œ–÷–∂œ
             }
             break;
         case MY_UART_ID_USART2:
-            //ÈÖçÁΩÆGPIOÁ´ØÂè£
+            //≈‰÷√GPIO∂Àø⁄
             GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2;
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
             GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -85,7 +85,7 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
             GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-            //ÂàùÂßãÂåñ‰∏≤Âè£2
+            //≥ı ºªØ¥Æø⁄2
             USART_InitStruct.USART_BaudRate = band;
             USART_InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
             USART_InitStruct.USART_WordLength = USART_WordLength_8b;
@@ -94,10 +94,10 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
             USART_Init(USART2, &USART_InitStruct);
 
-            //‰ΩøËÉΩ‰∏≤Âè£2
+            // πƒ‹¥Æø⁄2
             USART_Cmd(USART2, ENABLE);
 
-            //ÈÖçÁΩÆ‰∏≠Êñ≠NVIC
+            //≈‰÷√÷–∂œNVIC
             NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
             NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
             NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
@@ -106,12 +106,12 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
 
             if(recvMode == ISR_MODE)
             {
-                USART_ITConfig(USART2, USART_IT_RXNE, ENABLE); // Êé•Êî∂‰∏≠Êñ≠
-                USART_ITConfig(USART2, USART_IT_IDLE, ENABLE); // Á©∫Èó≤‰∏≠Êñ≠
+                USART_ITConfig(USART2, USART_IT_RXNE, ENABLE); // Ω” ’÷–∂œ
+                USART_ITConfig(USART2, USART_IT_IDLE, ENABLE); // ø’œ–÷–∂œ
             }
             break;
         case MY_UART_ID_USART3:
-            //ÈÖçÁΩÆGPIOÁ´ØÂè£
+            //≈‰÷√GPIO∂Àø⁄
             GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
             GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -121,7 +121,7 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
             GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-            //ÂàùÂßãÂåñ‰∏≤Âè£3
+            //≥ı ºªØ¥Æø⁄3
             USART_InitStruct.USART_BaudRate = band;
             USART_InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
             USART_InitStruct.USART_WordLength = USART_WordLength_8b;
@@ -130,10 +130,10 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
             USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
             USART_Init(USART3, &USART_InitStruct);
 
-            //‰ΩøËÉΩ‰∏≤Âè£3
+            // πƒ‹¥Æø⁄3
             USART_Cmd(USART3, ENABLE);
 
-            //ÈÖçÁΩÆ‰∏≠Êñ≠NVIC
+            //≈‰÷√÷–∂œNVIC
             NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
             NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
             NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
@@ -142,8 +142,8 @@ static void uartInit(u8 uartId, int band, u8 recvMode)
 
             if(recvMode == ISR_MODE)
             {
-                USART_ITConfig(USART3, USART_IT_RXNE, ENABLE); // Êé•Êî∂‰∏≠Êñ≠
-                USART_ITConfig(USART3, USART_IT_IDLE, ENABLE); // Á©∫Èó≤‰∏≠Êñ≠
+                USART_ITConfig(USART3, USART_IT_RXNE, ENABLE); // Ω” ’÷–∂œ
+                USART_ITConfig(USART3, USART_IT_IDLE, ENABLE); // ø’œ–÷–∂œ
             }
             break;
     }

@@ -11,6 +11,7 @@
 //#define KEY_BOARD_DRIVER_ENABLE
 //#define DS18B20_DRIVER_ENABLE
 //#define DHT11_DRIVER_ENABLE
+//#define DS1302_DRIVER_ENABLE
 
 /*********************IIC*****************/
 //#define OLED_DRIVER_ENABLE
@@ -33,6 +34,10 @@
 
 #ifdef DHT11_DRIVER_ENABLE
     #include "dht11.h"
+#endif
+
+#ifdef DS1302_DRIVER_ENABLE
+    #include "ds1302.h"
 #endif
 
 /*********************IIC*****************/
