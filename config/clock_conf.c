@@ -14,4 +14,8 @@ void vClockEnable(void)
         RCC_APB1Periph_USART2 |
         RCC_APB1Periph_USART3,
         ENABLE);
+
+    RCC_AHBPeriphClockCmd(
+        RCC_AHBPeriph_DMA1
+        ,ENABLE);
 }

@@ -21,7 +21,7 @@ enum MY_UART_ID
 enum MY_UART_RECV_MODE
 {
     ISR_MODE = 0, // 中断接收模式
-    DMA_MODE      // DMA接收模式，暂时未添加
+    DMA_MODE      // DMA接收模式
 };
 
 typedef struct __MY_UART
