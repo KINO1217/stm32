@@ -12,6 +12,7 @@
 //#define DS18B20_DRIVER_ENABLE
 //#define DHT11_DRIVER_ENABLE
 //#define DS1302_DRIVER_ENABLE
+//#define HC_SR04_DRIVER_ENABLE
 
 /*********************IIC*****************/
 //#define OLED_DRIVER_ENABLE
@@ -38,6 +39,10 @@
 
 #ifdef DS1302_DRIVER_ENABLE
     #include "ds1302.h"
+#endif
+
+#ifdef HC_SR04_DRIVER_ENABLE
+    #include "hc_sr04.h"
 #endif
 
 /*********************IIC*****************/

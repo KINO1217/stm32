@@ -470,6 +470,11 @@
               <FileType>1</FileType>
               <FilePath>..\fwlibs\stm32f10x_dma.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fwlibs\stm32f10x_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

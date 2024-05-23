@@ -1,5 +1,6 @@
 #include "driver_conf.h"
 #define SYS_INIT 1
+
 int main()
 {
     #if SYS_INIT
@@ -10,5 +11,6 @@ int main()
 
     while (1)
     {
+        
     }
 }
