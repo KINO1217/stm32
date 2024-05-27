@@ -3,146 +3,166 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct __MIIC{
-    GPIO_TypeDef* SDA_GPIOx;
-    uint16_t SDA_Pin;
-    GPIO_TypeDef* SCL_GPIOx;
-    uint16_t SCL_Pin;
-}m_iic;
+/**
+ * IIC引脚配置结构体对象
+ */
+typedef struct __MIIC
+{
+    GPIO_TypeDef *sclPort;
+    uint16_t sclPin;
+    GPIO_TypeDef *sdaPort;
+    uint16_t sdaPin;
+} m_iic;
 
-static void sdaLineMode(const c_my_iic *this,u8 mode);
 static void start(const c_my_iic *this);
 static void stop(const c_my_iic *this);
-static u8 checkAck(const c_my_iic *this);
 static void sendByteData(const c_my_iic *this,u8 data);
-c_my_iic iic_create(GPIO_TypeDef* SDA_GPIOx,uint16_t SDA_Pin,GPIO_TypeDef* SCL_GPIOx,uint16_t SCL_Pin)
+static u8 recvByteData(const c_my_iic *this);
+static u8 checkAck(const c_my_iic *this);
+static void sendAck(const c_my_iic *this,u8 ackBit);
+
+c_my_iic iic_create(GPIO_TypeDef *sclPort, uint16_t sclPin, GPIO_TypeDef *sdaPort, uint16_t sdaPin)
 {
     c_my_iic new = {0};
 
-    // 初始化GPIO口
-    GPIO_InitTypeDef GPIO_InitStruct;
-    GPIO_InitStruct.GPIO_Pin = SDA_Pin;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//推挽输出模式
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//高速模式
-    GPIO_Init(SDA_GPIOx,&GPIO_InitStruct);
+    /**初始化SDA和SCL引脚端口*/
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin = sclPin;
+    // 设置为开漏输出模式，为弱上拉，可输出低电平，
+    // 高电平由上拉电阻提供，输出高电平为释放总线，可读取电平状态
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(sclPort, &GPIO_InitStructure);
 
-    GPIO_InitStruct.GPIO_Pin = SCL_Pin;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//推挽输出模式
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//高速模式
-    GPIO_Init(SCL_GPIOx,&GPIO_InitStruct);
+    GPIO_InitStructure.GPIO_Pin = sdaPin;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(sdaPort, &GPIO_InitStructure);
 
-    // 设置默认值
-    GPIO_SetBits(SDA_GPIOx,SDA_Pin);
-    GPIO_SetBits(SDA_GPIOx,SDA_Pin);
+    /**设置默认电平*/
+    GPIO_SetBits(sdaPort, sdaPin);
+    GPIO_SetBits(sclPort, sclPin);
 
-    // 设置c_my_iic结构体变量
+    /**为c_my_iic结构体对象赋值*/
     new.this = malloc(sizeof(m_iic));
-    memset(new.this,0,sizeof(m_iic));
-    ((m_iic*)new.this)->SDA_GPIOx = SDA_GPIOx;
-    ((m_iic*)new.this)->SDA_Pin = SDA_Pin;
-    ((m_iic*)new.this)->SCL_GPIOx = SCL_GPIOx;
-    ((m_iic*)new.this)->SCL_Pin = SCL_Pin;
-    new.sdaLineMode = sdaLineMode;
+    memset(new.this, 0, sizeof(m_iic));
+    ((m_iic *)new.this)->sdaPort = sdaPort;
+    ((m_iic *)new.this)->sdaPin = sdaPin;
+    ((m_iic *)new.this)->sclPort = sclPort;
+    ((m_iic *)new.this)->sclPin = sclPin;
     new.start = start;
     new.stop = stop;
     new.sendByteData = sendByteData;
+    new.recvByteData = recvByteData;
     new.checkAck = checkAck;
+    new.sendAck = sendAck;
 
     return new;
 }
 
-static void sdaLineMode(const c_my_iic *this,u8 mode)
-{
-    m_iic *m_this = NULL;
-    m_this = this->this;
-    GPIO_InitTypeDef GPIO_InitStruct;
-
-    switch(mode)
-    {
-        case GPIO_MODE_INPUT:
-            GPIO_InitStruct.GPIO_Pin = m_this->SDA_Pin;
-            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;//上拉输入模式
-            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//高速模式
-            GPIO_Init(m_this->SDA_GPIOx,&GPIO_InitStruct);
-            break;
-        case GPIO_MODE_OUTPUT:
-            GPIO_InitStruct.GPIO_Pin = m_this->SDA_Pin;
-            GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;//推挽输出模式
-            GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//高速模式
-            GPIO_Init(m_this->SDA_GPIOx,&GPIO_InitStruct);
-            break;
-    }
-}
-
 static void start(const c_my_iic *this)
 {
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDA线为输出模式
-    
-    m_iic *m_this = NULL;
-    m_this = this->this;
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
 
-    GPIO_SetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-    GPIO_SetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
+    GPIO_SetBits(m_this->sdaPort, m_this->sdaPin);
+    GPIO_SetBits(m_this->sclPort, m_this->sclPin);
     vDelayUs(5);
-    GPIO_ResetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
+    GPIO_ResetBits(m_this->sdaPort, m_this->sdaPin);
+    vDelayUs(5);
+    GPIO_ResetBits(m_this->sclPort, m_this->sclPin);
     vDelayUs(5);
 }
 
 static void stop(const c_my_iic *this)
 {
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDA线为输出模式
-    
-    m_iic *m_this = NULL;
-    m_this = this->this;
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
 
-    GPIO_SetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-    GPIO_ResetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
+    GPIO_ResetBits(m_this->sdaPort, m_this->sdaPin);
+    GPIO_SetBits(m_this->sclPort, m_this->sclPin);
     vDelayUs(5);
-    GPIO_SetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
+    GPIO_SetBits(m_this->sdaPort, m_this->sdaPin);
     vDelayUs(5);
-}
-
-static u8 checkAck(const c_my_iic *this)
-{
-    u8 ack = 0;
-    this->sdaLineMode(this,GPIO_MODE_INPUT); //SDA线为输入模式
-    
-    m_iic *m_this = NULL;
-    m_this = this->this;
-
-    GPIO_ResetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-    vDelayUs(3);
-    GPIO_SetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-    vDelayUs(3);
-    if(GPIO_ReadInputDataBit(m_this->SDA_GPIOx,m_this->SDA_Pin))
-        ack = 1;
-    else
-        ack = 0;
-    vDelayUs(3);
-    GPIO_ResetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-    return ack;
 }
 
 static void sendByteData(const c_my_iic *this,u8 data)
 {
-    u8 i = 0;
-    this->sdaLineMode(this,GPIO_MODE_OUTPUT); //SDA线为输出模式
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
 
-    m_iic *m_this = NULL;
-    m_this = this->this;
-
-    for(i=0;i<8;i++)
+    for(u8 i=0;i<8;i++)
     {
-        GPIO_ResetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
-        vDelayUs(5);
         if(data&0x80)
-            GPIO_SetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
+            GPIO_SetBits(m_this->sdaPort,m_this->sdaPin);
         else
-            GPIO_ResetBits(m_this->SDA_GPIOx,m_this->SDA_Pin);
-        GPIO_SetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
+            GPIO_ResetBits(m_this->sdaPort,m_this->sdaPin);
         vDelayUs(5);
         data <<= 1;
+        GPIO_SetBits(m_this->sclPort,m_this->sclPin);
+        vDelayUs(5);
+        GPIO_ResetBits(m_this->sclPort,m_this->sclPin);
+        vDelayUs(5);
     }
-    GPIO_ResetBits(m_this->SCL_GPIOx,m_this->SCL_Pin);
+}
+
+static u8 recvByteData(const c_my_iic *this)
+{
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
+    u8 recvData = 0x00;
+
+    /**释放SDA线，处于接收模式*/
+    GPIO_SetBits(m_this->sdaPort,m_this->sdaPin);
+    vDelayUs(5);
+
+    /**接收数据*/
+    for(u8 i=0;i<8;i++)
+    {
+        recvData <<= 1;
+        GPIO_SetBits(m_this->sclPort,m_this->sclPin);
+        vDelayUs(5);
+        if(GPIO_ReadInputDataBit(m_this->sdaPort,m_this->sdaPin))
+            recvData |= 0x01;
+        GPIO_ResetBits(m_this->sclPort,m_this->sclPin);
+        vDelayUs(5);
+    }
+
+    return recvData;
+}
+
+static u8 checkAck(const c_my_iic *this)
+{
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
+    u8 ack = 0x00;
+
+    /**释放SDA线，处于接收模式*/
+    GPIO_SetBits(m_this->sdaPort,m_this->sdaPin);
+    vDelayUs(5);
+
+    /**接收数据*/
+    GPIO_SetBits(m_this->sclPort,m_this->sclPin);
+    vDelayUs(5);
+    ack = GPIO_ReadInputDataBit(m_this->sdaPort,m_this->sdaPin);
+    GPIO_ResetBits(m_this->sclPort,m_this->sclPin);
+    vDelayUs(5);
+
+    return ack;
+}
+
+static void sendAck(const c_my_iic *this,u8 ackBit)
+{
+    m_iic *m_this = {0};
+    m_this = (m_iic *)this->this;
+
+    if(ackBit == 1)
+        GPIO_SetBits(m_this->sdaPort,m_this->sdaPin);
+    else
+        GPIO_ResetBits(m_this->sdaPort,m_this->sdaPin);
+    vDelayUs(5);
+    GPIO_SetBits(m_this->sclPort,m_this->sclPin);
+    vDelayUs(5);
+    GPIO_ResetBits(m_this->sclPort,m_this->sclPin);
     vDelayUs(5);
 }

@@ -11,6 +11,7 @@
     "files.associations": {
         "stm32f10x.h": "c",
         "oled_font.h": "c",
-        "driver_conf.h": "c"
+        "driver_conf.h": "c",
+        "stdio.h": "c"
     }
 }
