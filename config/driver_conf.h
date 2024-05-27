@@ -6,6 +6,8 @@
 #include "stdio.h"
 #include "my_uart.h"
 #include "my_iic.h"
+#include "my_timer.h"
+
 /**********************ALL******************/
 //#define SWITCH_DRIVER_ENABLE
 //#define KEY_BOARD_DRIVER_ENABLE
