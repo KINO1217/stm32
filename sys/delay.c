@@ -25,15 +25,33 @@ void vDelayUs(u32 nus)
 
 void vDelayMs(u16 nms)
 {
-    if(nms>1864) return;
-    
-    u32 temp = 0;
-    SysTick->LOAD = (u32)fac_ms*nms;
-    SysTick->VAL = 0x00;
-    SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
-    do{
-        temp = SysTick->CTRL;
-    }while((temp&0x01) && !(temp&(1<<16)));
-    SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
-    SysTick->VAL = 0x00;
+    u8 cnt = 0;
+
+    while((cnt+1)*1500<nms)
+    {
+        u32 temp = 0;
+        SysTick->LOAD = (u32)fac_ms*1500;
+        SysTick->VAL = 0x00;
+        SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
+        do{
+            temp = SysTick->CTRL;
+        }while((temp&0x01) && !(temp&(1<<16)));
+        SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
+        SysTick->VAL = 0x00;
+
+        cnt++;
+    };
+
+    if(nms%1500!=0)
+    {
+        u32 temp = 0;
+        SysTick->LOAD = (u32)fac_ms*(nms%1500);
+        SysTick->VAL = 0x00;
+        SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
+        do{
+            temp = SysTick->CTRL;
+        }while((temp&0x01) && !(temp&(1<<16)));
+        SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
+        SysTick->VAL = 0x00;
+    }
 }

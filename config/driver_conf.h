@@ -15,6 +15,7 @@
 //#define DHT11_DRIVER_ENABLE
 //#define DS1302_DRIVER_ENABLE
 //#define HC_SR04_DRIVER_ENABLE
+//#define JQ8400_DRIVER_ENABLE
 
 /*********************IIC*****************/
 //#define OLED_DRIVER_ENABLE
@@ -45,6 +46,10 @@
 
 #ifdef HC_SR04_DRIVER_ENABLE
     #include "hc_sr04.h"
+#endif
+
+#ifdef JQ8400_DRIVER_ENABLE
+    #include "jq8400.h"
 #endif
 
 /*********************IIC*****************/
