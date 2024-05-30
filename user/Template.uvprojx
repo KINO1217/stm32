@@ -112,12 +112,12 @@
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
           <SimDllArguments> -REMAP</SimDllArguments>
-          <SimDlgDll>DCM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
+          <SimDlgDll>DARMSTM.DLL</SimDlgDll>
+          <SimDlgDllArguments>-pSTM32F103C8</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
-          <TargetDlgDll>TCM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
+          <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pSTM32F103C8</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -391,6 +391,13 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
+          <Files>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drivers\servo.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>
@@ -439,6 +446,11 @@
               <FileName>my_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\sys\my_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>my_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sys\my_pwm.c</FilePath>
             </File>
           </Files>
         </Group>

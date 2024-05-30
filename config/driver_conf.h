@@ -4,6 +4,7 @@
 #include "delay.h"
 #include "sys.h"
 #include "stdio.h"
+#include "my_pwm.h"
 #include "my_uart.h"
 #include "my_iic.h"
 #include "my_timer.h"
@@ -22,6 +23,9 @@
 
 /*********************UART*****************/
 //#define ESP8266_DRIVER_ENABLE
+
+/*********************PWM*****************/
+//#define SERVO_DRIVER_ENABLE
 
 /**********************ALL******************/
 #ifdef SWITCH_DRIVER_ENABLE
@@ -60,6 +64,11 @@
 /*********************UART*****************/
 #ifdef ESP8266_DRIVER_ENABLE
     #include "esp8266.h"
+#endif
+
+/**********PWM*****************/
+#ifdef SERVO_DRIVER_ENABLE
+    #include "servo.h"
 #endif
 
 #endif
