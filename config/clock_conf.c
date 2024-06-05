@@ -8,7 +8,8 @@ void vClockEnable(void)
         RCC_APB2Periph_GPIOC |
         RCC_APB2Periph_AFIO  |
         RCC_APB2Periph_USART1|
-        RCC_APB2Periph_TIM1,
+        RCC_APB2Periph_TIM1|
+        RCC_APB2Periph_ADC1,
         ENABLE);
 
     RCC_APB1PeriphClockCmd(

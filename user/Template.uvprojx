@@ -391,13 +391,6 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
-          <Files>
-            <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\servo.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>
@@ -452,6 +445,11 @@
               <FileType>1</FileType>
               <FilePath>..\sys\my_pwm.c</FilePath>
             </File>
+            <File>
+              <FileName>my_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sys\my_adc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -491,6 +489,11 @@
               <FileName>stm32f10x_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\fwlibs\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fwlibs\stm32f10x_adc.c</FilePath>
             </File>
           </Files>
         </Group>

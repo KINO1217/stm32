@@ -1,6 +1,9 @@
 #include "driver_conf.h"
 #define SYS_INIT 1
 
+float adc_0=0.0;
+float adc_1=0.0;
+
 int main()
 {
     #if SYS_INIT
