@@ -1,16 +1,13 @@
 #include "driver_conf.h"
 #define SYS_INIT 1
 
-float adc_0=0.0;
-float adc_1=0.0;
-
 int main()
 {
     #if SYS_INIT
         vClockEnable();                                 // 使能时钟
         NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); // 设置中断优先级组
         vDelayInit();                                   // 初始化SysTick
-    #endif
+    #endif 
 
     while (1)
     {

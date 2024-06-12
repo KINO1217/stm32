@@ -10,7 +10,7 @@
 
 enum WIFI_MODE
 {
-    MODE_AP=0,  //AP模式，暂时仅启用此模式
+    AP_MODE=0,  //AP模式，暂时仅启用此模式
     MQTT_ALIYUN,
     MQTT_ONENET
 };
@@ -20,41 +20,34 @@ typedef struct __ESP8266
 {
     void *this;
     /**
-     * 创建TCP服务器，while循环中使用
+     * 设置服务器模式回调函数
      * 示例：
-        esp8266.conn(&esp8266);
-    */
-    void (*conn)(const c_esp8266 *this);
-    /**
-     * 设置服务器回调函数，用于接收客户端数据
-     * 示例：
-        void serverCallback(u8 *data,int dataLen)
+        void callback(u8* data,int data_len)
         {
             return;
         }
-
-        esp8266.setServerCallback(serverCallback);
     */
-    void (*setServerCallback)(void (*callback)(u8 *data,int dataLen));
+    void (*setServerCallback)(void (*callback)(u8 *data,int data_len));
     /**
-     * 向客户端发送消息
+     * AP服务器模式发送数据
      * 示例：
-        esp8266.serverSend(&esp8266,data,dataLen);
+        esp.serverSend(&esp,"123",3);
     */
-    void (*serverSend)(const c_esp8266 *this,u8 *data,int dataLen);
+    void (*serverSend)(const c_esp8266 *this,u8 *data,int data_len);
 }c_esp8266;
 
 /**
- * 创建esp8266对象
+ * 创建c_esp8266对象
+ * @param uart_num 串口号
+ * @param mode 模式
+ * @param clientID 客户端ID
+ * @param username 用户名
+ * @param passwd 密码
+ * @return c_esp8266对象
  * 示例：
-    c_esp8266 esp8266 = {0};
+    c_esp8266 esp = {0};
 
-    esp8266 = esp8266_create(MY_UART_ID_USART3, //串口号
-            MODE_AP,                            //工作模式
-            NULL,                               //客户端ID
-            (u8*)"APMode",                      //用户名
-            (u8*)"12345678"                     //密码
-        );
+    esp = esp8266_create(MY_UART_ID_USART1,AP_MODE,NULL,"APMODE1","12345678");
 */
 c_esp8266 esp8266_create(u8 uart_num,u8 mode,u8 *clientID,u8 *username,u8 *passwd);
 
