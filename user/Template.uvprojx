@@ -391,13 +391,6 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
-          <Files>
-            <File>
-              <FileName>esp8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drivers\esp8266.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>

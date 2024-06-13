@@ -9,7 +9,7 @@
  * 串口驱动程序，可随意使用
  */
 
-#define MAX_RECV_BUF_SIZE 64
+#define MAX_RECV_BUF_SIZE 200
 
 enum MY_UART_ID
 {
