@@ -9,6 +9,7 @@
 #include "my_iic.h"
 #include "my_timer.h"
 #include "my_adc.h"
+#include "my_flash.h"
 
 /**********************ALL******************/
 //#define SWITCH_DRIVER_ENABLE
