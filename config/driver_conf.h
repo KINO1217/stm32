@@ -29,6 +29,9 @@
 /*********************PWM*****************/
 //#define SERVO_DRIVER_ENABLE
 
+/*********************SPI******************/
+//#define TFT18_DRIVER_ENABLE
+
 /**********************ALL******************/
 #ifdef SWITCH_DRIVER_ENABLE
     #include "switch.h"
@@ -71,6 +74,11 @@
 /**********PWM*****************/
 #ifdef SERVO_DRIVER_ENABLE
     #include "servo.h"
+#endif
+
+/**************SPI******************/
+#ifdef TFT18_DRIVER_ENABLE
+    #include "tft18.h"
 #endif
 
 #endif

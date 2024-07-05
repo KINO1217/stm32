@@ -12,6 +12,8 @@
         "stm32f10x.h": "c",
         "oled_font.h": "c",
         "driver_conf.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "tft18_font.h": "c",
+        "tft18.h": "c"
     }
 }
