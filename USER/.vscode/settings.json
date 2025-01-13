@@ -1,0 +1,22 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "hide-files.files": [],
+    "files.associations": {
+        "qf_gpio.h": "c",
+        "stm32f10x.h": "c",
+        "qf_conf.h": "c",
+        "qf_oled_font.h": "c",
+        "qf_oled.h": "c",
+        "qf_delay.h": "c",
+        "qf_esp8266.h": "c",
+        "array": "c",
+        "string": "c"
+    }
+}
