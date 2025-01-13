@@ -1,6 +1,7 @@
 #ifndef __QF_DRIVER_CONF_H__
 #define __QF_DRIVER_CONF_H__
 
+#include "qf_pwm.h"
 #include "qf_timer.h"
 #include "qf_uart.h"
 #include "stdio.h"
