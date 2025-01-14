@@ -1,6 +1,7 @@
 #ifndef __QF_DRIVER_CONF_H__
 #define __QF_DRIVER_CONF_H__
 
+#include "math.h"
 #include "qf_pwm.h"
 #include "qf_timer.h"
 #include "qf_uart.h"
@@ -19,6 +20,8 @@
 // #define QF_OLED
 
 // #define QF_ESP8266
+
+// #define QF_SERVO
 
 /**
  * 驱动文件引入
@@ -41,6 +44,10 @@
 
 #ifdef QF_ESP8266
 #include "qf_esp8266.h"
+#endif
+
+#ifdef QF_SERVO
+#include "qf_servo.h"
 #endif
 
 #endif
