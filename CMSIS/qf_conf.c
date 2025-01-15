@@ -6,7 +6,8 @@ void QF_RCC_Conf(void)
         RCC_APB2Periph_GPIOA
             | RCC_APB2Periph_GPIOB
             | RCC_APB2Periph_USART1
-            | RCC_APB2Periph_TIM1,
+            | RCC_APB2Periph_TIM1
+            | RCC_APB2Periph_ADC1,
         ENABLE);
 
     RCC_APB1PeriphClockCmd(

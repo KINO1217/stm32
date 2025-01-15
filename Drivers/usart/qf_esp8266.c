@@ -33,7 +33,7 @@ void QF_ESP8266_WifiInit(void)
     UART3_Callback = QF_USART_Callback; // 搜索替换时注意这两个函数名
 
     QF_UART_Printf(USART3, (u8*)"AT+RST\r\n"); // 重启设备
-    while (QF_ESP8266_Verify("AT+RST\r\n\r\nOK\r\n", 3000)) {
+    while (QF_ESP8266_Verify("AT+RST\r\n\r\nOK\r\n", 5000)) {
         QF_UART_Printf(USART3, (u8*)"AT+RST\r\n");
     };
     connCode++;
@@ -51,7 +51,7 @@ void QF_ESP8266_WifiInit(void)
     connCode++;
 
     QF_UART_Printf(USART3, (u8*)"AT+CWJAP=\"%s\",\"%s\"\r\n", WIFI_SSID, WIFI_PASSWD); // 连接WIFI
-    while (QF_ESP8266_Verify("\r\nOK\r\n", 3000)) {
+    while (QF_ESP8266_Verify("\r\nOK\r\n", 5000)) {
         QF_UART_Printf(USART3, (u8*)"AT+CWJAP=\"%s\",\"%s\"\r\n", WIFI_SSID, WIFI_PASSWD);
     };
     connCode++;
@@ -78,7 +78,7 @@ void QF_ESP8266_ConnMqtt(void)
     connCode++;
 
     QF_UART_Printf(USART3, (u8*)"AT+MQTTCONN=0,\"mqtts.heclouds.com\",1883,0\r\n"); // 连接onenet
-    while (QF_ESP8266_Verify("\r\nOK\r\n", 2000)) {
+    while (QF_ESP8266_Verify("\r\nOK\r\n", 3000)) {
         QF_UART_Printf(USART3, (u8*)"AT+MQTTCONN=0,\"mqtts.heclouds.com\",1883,0\r\n");
     };
     connCode++;
