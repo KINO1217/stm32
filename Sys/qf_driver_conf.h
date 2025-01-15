@@ -18,6 +18,7 @@
 // #define QF_DS18B20
 // #define QF_DHT11
 // #define QF_DS1302
+// #define QF_HCSR04
 
 // #define QF_OLED
 
@@ -42,6 +43,10 @@
 
 #ifdef QF_DS1302
 #include "qf_ds1302.h"
+#endif
+
+#ifdef QF_HCSR04
+#include "qf_hc_sr04.h"
 #endif
 
 #ifdef QF_OLED
