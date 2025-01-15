@@ -22,6 +22,7 @@
 // #define QF_MOTOR
 
 // #define QF_OLED
+// #define QF_MPU6050
 
 // #define QF_ESP8266
 
@@ -56,6 +57,10 @@
 
 #ifdef QF_OLED
 #include "qf_oled.h"
+#endif
+
+#ifdef QF_MPU6050
+#include "qf_mpu6050.h"
 #endif
 
 #ifdef QF_ESP8266
