@@ -17,6 +17,7 @@
         "qf_delay.h": "c",
         "qf_esp8266.h": "c",
         "array": "c",
-        "string": "c"
+        "string": "c",
+        "utility": "c"
     }
 }

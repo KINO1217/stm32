@@ -17,6 +17,7 @@
 // #define QF_GPIO
 // #define QF_DS18B20
 // #define QF_DHT11
+// #define QF_DS1302
 
 // #define QF_OLED
 
@@ -37,6 +38,10 @@
 
 #ifdef QF_DHT11
 #include "qf_dht11.h"
+#endif
+
+#ifdef QF_DS1302
+#include "qf_ds1302.h"
 #endif
 
 #ifdef QF_OLED
