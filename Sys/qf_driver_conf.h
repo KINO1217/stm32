@@ -20,6 +20,7 @@
 // #define QF_DS1302
 // #define QF_HCSR04
 // #define QF_MOTOR
+// #define QF_HX711
 
 // #define QF_OLED
 // #define QF_MPU6050
@@ -54,6 +55,10 @@
 
 #ifdef QF_MOTOR
 #include "qf_motor.h"
+#endif
+
+#ifdef QF_HX711
+#include "qf_hx711.h"
 #endif
 
 #ifdef QF_OLED
