@@ -23,6 +23,7 @@
 
 // #define QF_OLED
 // #define QF_MPU6050
+// #define QF_MAX30102
 
 // #define QF_ESP8266
 
@@ -61,6 +62,10 @@
 
 #ifdef QF_MPU6050
 #include "qf_mpu6050.h"
+#endif
+
+#ifdef QF_MAX30102
+#include "qf_max30102.h"
 #endif
 
 #ifdef QF_ESP8266
