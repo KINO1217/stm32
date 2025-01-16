@@ -21,6 +21,7 @@
 // #define QF_HCSR04
 // #define QF_MOTOR
 // #define QF_HX711
+// #define QF_IRRECV
 
 // #define QF_OLED
 // #define QF_MPU6050
@@ -59,6 +60,10 @@
 
 #ifdef QF_HX711
 #include "qf_hx711.h"
+#endif
+
+#ifdef QF_IRRECV
+#include "qf_ir_recv.h"
 #endif
 
 #ifdef QF_OLED

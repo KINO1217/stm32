@@ -17,5 +17,6 @@ void QF_UART1_Init(uint32_t baud);
 void QF_UART2_Init(uint32_t baud);
 void QF_UART3_Init(uint32_t baud);
 void QF_UART_Printf(USART_TypeDef* uartx, u8* data, ...);
+void QF_UART_SendData(USART_TypeDef* uartx, u8* data, u8 data_len);
 
 #endif

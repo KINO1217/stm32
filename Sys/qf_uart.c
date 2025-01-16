@@ -195,3 +195,14 @@ void QF_UART_Printf(USART_TypeDef* uartx, u8* data, ...)
             ;
     }
 }
+
+void QF_UART_SendData(USART_TypeDef* uartx, u8* data, u8 data_len)
+{
+    for (u8 i = 0; i < data_len; i++) {
+        while (USART_GetFlagStatus(uartx, USART_FLAG_TXE) == RESET)
+            ;
+        USART_SendData(uartx, (uint16_t)data[i]);
+        while (USART_GetFlagStatus(uartx, USART_FLAG_TC) == RESET)
+            ;
+    }
+}

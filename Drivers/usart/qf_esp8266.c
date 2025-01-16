@@ -39,7 +39,7 @@ void QF_ESP8266_WifiInit(void)
     connCode++;
 
     QF_UART_Printf(USART3, (u8*)"ATE0\r\n"); // πÿ±’ªÿœ‘
-    while (QF_ESP8266_Verify("ATE0\r\n\r\nOK\r\n", 500)) {
+    while (QF_ESP8266_Verify("\r\nOK\r\n", 500)) {
         QF_UART_Printf(USART3, (u8*)"ATE0\r\n");
     };
     connCode++;
