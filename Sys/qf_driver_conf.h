@@ -31,6 +31,8 @@
 
 // #define QF_SERVO
 
+// #define QF_RC522
+
 /**
  * 驱动文件引入
  */
@@ -84,6 +86,10 @@
 
 #ifdef QF_SERVO
 #include "qf_servo.h"
+#endif
+
+#ifdef QF_RC522
+#include "qf_rc522.h"
 #endif
 
 #endif
