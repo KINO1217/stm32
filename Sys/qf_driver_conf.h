@@ -28,6 +28,7 @@
 // #define QF_MAX30102
 
 // #define QF_ESP8266
+// #define QF_SUI101A
 
 // #define QF_SERVO
 
@@ -82,6 +83,10 @@
 
 #ifdef QF_ESP8266
 #include "qf_esp8266.h"
+#endif
+
+#ifdef QF_SUI101A
+#include "qf_sui101a.h"
 #endif
 
 #ifdef QF_SERVO

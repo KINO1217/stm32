@@ -6,9 +6,9 @@
 #include "stm32f10x.h"
 #include "string.h"
 
-#define UART1_RX_BUF_SIZE 16
+#define UART1_RX_BUF_SIZE 64
 extern void (*UART1_Callback)(u8* data, u16 data_len);
-#define UART2_RX_BUF_SIZE 16
+#define UART2_RX_BUF_SIZE 64
 extern void (*UART2_Callback)(u8* data, u16 data_len);
 #define UART3_RX_BUF_SIZE 256
 extern void (*UART3_Callback)(u8* data, u16 data_len);
