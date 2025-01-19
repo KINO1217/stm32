@@ -3,7 +3,9 @@
 
 #include "stm32f10x.h"
 
+#define MEAN_CNT 8
+
 void QF_ADC_Init(void);
-float QF_ADC_GetV(u8 ch);
+u8 QF_ADC_GetV(u8 ch);
 
 #endif

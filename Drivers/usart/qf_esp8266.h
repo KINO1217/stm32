@@ -34,6 +34,14 @@
     QF_ESP8266_Callback = esp_call;
 
     void esp_call(u8* data){
+		char* ptr = NULL;
+		
+		if((ptr = strstr((char*)data,"d1"))!=NULL){
+			ptr+=4;
+			sscanf(ptr,"%d",&d);
+		}
+		
+		ptr = NULL;
         return;
     }
  */

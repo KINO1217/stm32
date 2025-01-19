@@ -12,7 +12,6 @@ int main()
     // 模块及外设初始化
 
     while (1) {
-
         QF_DELAY_Ms(5);
     }
 }

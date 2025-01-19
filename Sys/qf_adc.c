@@ -7,7 +7,7 @@
 void QF_ADC_Init(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_1;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -34,16 +34,23 @@ void QF_ADC_Init(void)
         ;
 }
 
-float QF_ADC_GetV(u8 ch)
+u8 QF_ADC_GetV(u8 ch)
 {
-    uint16_t adc_value = 0;
+    uint32_t adc_value = 0;
 
+    // 读取8次均值滤波
     ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_239Cycles5);
 
-    ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-    while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC))
-        ;
-    adc_value = ADC_GetConversionValue(ADC1);
+    for (u8 i = 0; i < MEAN_CNT; i++) {
+        ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+        while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC))
+            ;
+        adc_value += ADC_GetConversionValue(ADC1);
+    }
 
-    return (float)(3.3 * adc_value / 4095.0);
+    adc_value /= MEAN_CNT;
+    if (adc_value > 3960)
+        adc_value = 3960;
+
+    return adc_value / 40;
 }
