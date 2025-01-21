@@ -573,6 +573,11 @@
               <FileType>1</FileType>
               <FilePath>..\Sys\qf_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>qf_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Sys\qf_flash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

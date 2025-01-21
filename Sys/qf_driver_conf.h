@@ -3,6 +3,7 @@
 
 #include "math.h"
 #include "qf_adc.h"
+#include "qf_flash.h"
 #include "qf_pwm.h"
 #include "qf_timer.h"
 #include "qf_uart.h"
