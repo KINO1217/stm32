@@ -13,13 +13,19 @@ u8 QF_DHT11_GetData(u8* temp, u8* humi)
 {
     uint8_t crc = 1;
     u8 tempData[5] = { 0 };
+    int timeout = 0;
 
     QF_DHT11_Start();
     if (!DAT_IN) {
-        while (!DAT_IN)
-            ;
-        while (DAT_IN)
-            ;
+        while (!DAT_IN && timeout < 80) {
+            QF_DELAY_Us(1);
+            timeout++;
+        }
+        timeout = 0;
+        while (DAT_IN && timeout < 80) {
+            QF_DELAY_Us(1);
+            timeout++;
+        }
 
         for (u8 i = 0; i < 5; i++) {
             tempData[i] = QF_DHT11_GetByte();
@@ -69,18 +75,25 @@ void QF_DHT11_Start(void)
 u8 QF_DHT11_GetByte(void)
 {
     uint8_t dat = 0;
+    int timeout = 0;
 
     QF_DATLINEMODE(1);
 
     for (u8 i = 0; i < 8; i++) {
         dat <<= 1;
-        while (!DAT_IN)
-            ;
+        timeout = 0;
+        while (!DAT_IN && timeout < 50) {
+            QF_DELAY_Us(1);
+            timeout++;
+        }
         QF_DELAY_Us(35);
         if (DAT_IN)
             dat |= 0x01;
-        while (DAT_IN)
-            ;
+        timeout = 0;
+        while (DAT_IN && timeout < 70) {
+            QF_DELAY_Us(1);
+            timeout++;
+        }
     }
 
     return dat;

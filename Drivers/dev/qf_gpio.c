@@ -30,14 +30,18 @@ u8 QF_KEY_Scan(u8 mode)
     if (mode)
         key_state = 1;
 
-    if ((KEY1 == 0) && key_state) {
+    if ((KEY1 == 0 || KEY2 == 0 || KEY3 == 0) && key_state) {
         QF_DELAY_Ms(20); // Ïû¶¶
         key_state = 0;
 
         if (KEY1 == 0)
             return KEY1_PRESS;
+        else if (KEY2 == 0)
+            return KEY2_PRESS;
+        else if (KEY3 == 0)
+            return KEY3_PRESS;
 
-    } else if (KEY1 == 1 && key_state == 0)
+    } else if (KEY1 == 1 && KEY2 == 1 && KEY3 == 1 && key_state == 0)
         key_state = 1;
 
     return 0;

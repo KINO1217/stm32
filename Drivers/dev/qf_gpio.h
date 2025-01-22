@@ -10,8 +10,12 @@
 
 // KEY SET
 #define KEY1 PBin(14)
+#define KEY2 PBin(13)
+#define KEY3 PBin(12)
 
 #define KEY1_PRESS 1
+#define KEY2_PRESS 2
+#define KEY3_PRESS 3
 
 void QF_GPIO_Init(void);
 void QF_KEY_Init(void);

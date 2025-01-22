@@ -47,6 +47,7 @@ void QF_HX711_GetZero(void)
 static int QF_HX711_ReadData(void)
 {
     int count = 0;
+    int timeout = 0;
 
     QF_HX711_DATLINEMODE(0);
 
@@ -55,8 +56,10 @@ static int QF_HX711_ReadData(void)
 
     QF_HX711_DATLINEMODE(1);
 
-    while (HXDAT_IN)
-        ; // 等待数据准备好，大概100ms,10Hz
+    while (HXDAT_IN && timeout < 100) {
+        QF_DELAY_Ms(1);
+        timeout++;
+    } // 等待数据准备好，大概100ms,10Hz
 
     for (u8 i = 0; i < 24; i++) {
         HXSCL_OUT = 1; // 上升沿准备数据
