@@ -10,7 +10,7 @@
 extern void (*UART1_Callback)(u8* data, u16 data_len);
 #define UART2_RX_BUF_SIZE 64
 extern void (*UART2_Callback)(u8* data, u16 data_len);
-#define UART3_RX_BUF_SIZE 256
+#define UART3_RX_BUF_SIZE 512
 extern void (*UART3_Callback)(u8* data, u16 data_len);
 
 void QF_UART1_Init(uint32_t baud);
