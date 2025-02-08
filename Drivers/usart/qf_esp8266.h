@@ -13,7 +13,7 @@
     char one_buf[64] = { 0 };
     int send_cnt = 0;
 
-    if (send_cnt++ >= 400) {
+    if (send_cnt++ >= 5) {
         if (QF_ESP8266_IsConnected()) {
             memset(send_buf, 0, sizeof(send_buf));
 
@@ -34,14 +34,16 @@
     QF_ESP8266_Callback = esp_call;
 
     void esp_call(u8* data){
-		char* ptr = NULL;
-		
-		if((ptr = strstr((char*)data,"d1"))!=NULL){
-			ptr+=4;
-			sscanf(ptr,"%d",&d);
-		}
-		
-		ptr = NULL;
+        char* ptr = NULL;
+        int tem = 0;
+
+        if((ptr = strstr((char*)data,"d1"))!=NULL){
+            ptr+=4;
+            sscanf(ptr,"%d",&tem);
+            t1 = tem;
+        }
+
+        ptr = NULL;
         return;
     }
  */
@@ -56,10 +58,10 @@
 #define DEVICE_ID "stm32"
 
 #define INTDATA "\\\"%s\\\":{\\\"value\\\":%d}\\,"
-#define FLOATDATA "\\\"%s\\\":{\\\"value\\\":%f}\\,"
+#define FLOATDATA "\\\"%s\\\":{\\\"value\\\":%.2f}\\,"
 #define STRDATA "\\\"%s\\\":{\\\"value\\\":\\\"%s\\\"}\\,"
 #define LASTINTDATA "\\\"%s\\\":{\\\"value\\\":%d}"
-#define LASTFLOATDATA "\\\"%s\\\":{\\\"value\\\":%f}"
+#define LASTFLOATDATA "\\\"%s\\\":{\\\"value\\\":%.2f}"
 #define LASTSTRDATA "\\\"%s\\\":{\\\"value\\\":\\\"%s\\\"}"
 
 typedef enum {

@@ -582,6 +582,18 @@
         </Group>
         <Group>
           <GroupName>Hardware</GroupName>
+          <Files>
+            <File>
+              <FileName>qf_esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\qf_esp8266.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_gps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\qf_gps.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>USER</GroupName>
