@@ -32,6 +32,7 @@
 // #define QF_ESP8266
 // #define QF_SUI101A
 // #define QF_GPS
+// #define QF_SIM900A
 
 // #define QF_SERVO
 
@@ -99,6 +100,10 @@
 
 #ifdef QF_GPS
 #include "qf_gps.h"
+#endif
+
+#ifdef QF_SIM900A
+#include "qf_sim900a.h"
 #endif
 
 #ifdef QF_SERVO

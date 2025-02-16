@@ -18,6 +18,7 @@
         "qf_esp8266.h": "c",
         "array": "c",
         "string": "c",
-        "utility": "c"
+        "utility": "c",
+        "qf_timer.h": "c"
     }
 }
