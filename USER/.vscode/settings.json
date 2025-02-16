@@ -19,6 +19,7 @@
         "array": "c",
         "string": "c",
         "utility": "c",
-        "qf_timer.h": "c"
+        "qf_timer.h": "c",
+        "qf_driver_conf.h": "c"
     }
 }

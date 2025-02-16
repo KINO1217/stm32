@@ -33,6 +33,7 @@
 // #define QF_SUI101A
 // #define QF_GPS
 // #define QF_SIM900A
+#define QF_AS608
 
 // #define QF_SERVO
 
@@ -104,6 +105,10 @@
 
 #ifdef QF_SIM900A
 #include "qf_sim900a.h"
+#endif
+
+#ifdef QF_AS608
+#include "qf_as608.h"
 #endif
 
 #ifdef QF_SERVO
