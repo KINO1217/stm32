@@ -33,7 +33,7 @@
 // #define QF_SUI101A
 // #define QF_GPS
 // #define QF_SIM900A
-#define QF_AS608
+// #define QF_AS608
 
 // #define QF_SERVO
 

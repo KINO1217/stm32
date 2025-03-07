@@ -16,7 +16,7 @@ void QF_DS18B20_GetTemp(float* temp)
     QF_DS18B20_Reset();
     QF_DS18B20_WriteByte(0xCC);
     QF_DS18B20_WriteByte(0x44);
-    QF_DELAY_Ms(750);
+    QF_DELAY_Ms(5);
     QF_DS18B20_Reset();
     QF_DS18B20_WriteByte(0xCC);
     QF_DS18B20_WriteByte(0xBE);

@@ -19,6 +19,19 @@
 #define R4_PORT GPIOA
 #define R4_PIN GPIO_Pin_0
 
+#define K1 13
+#define K2 9
+#define K3 5
+#define K4 14
+#define k5 10
+#define K6 6
+#define K7 15
+#define K8 11
+#define K9 7
+#define K0 12
+#define ENTER 16
+#define EXIT 8
+
 #define C4_Out(x) GPIO_WriteBit(C4_PORT, C4_PIN, (BitAction)x)
 #define C3_Out(x) GPIO_WriteBit(C3_PORT, C3_PIN, (BitAction)x)
 #define C2_Out(x) GPIO_WriteBit(C2_PORT, C2_PIN, (BitAction)x)
