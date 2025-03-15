@@ -77,6 +77,9 @@ void QF_OLED_Show_Char(u8 row, u8 col, u8 ch)
     for (u8 i = 0; i < 2; i++) {
         QF_OLED_Set_Pos(row + i, col);
         for (u8 j = 0; j < 8; j++) {
+            if ((col + j) > 127) {
+                QF_OLED_Set_Pos(row + i + 2, (col + j) % 128);
+            }
             QF_OLED_Write_Com(cFont8X16[index][i * 8 + j], 1);
         }
     }
@@ -96,6 +99,53 @@ void QF_OLED_Show_String(u8 row, u8 col, u8* str, ...)
         QF_OLED_Show_Char(row, col, tempStr[len]);
         len++;
         col += 8;
+        if (col > 127) {
+            row += 2;
+            col = col % 128;
+        }
+    }
+}
+
+void QF_OLED_Show_OneChinese(u8 row, u8 col, u8* china)
+{
+    if (row > 7 || col > 127)
+        return;
+
+    u16 hzSum = 0;
+    u16 index = 0;
+
+    hzSum = sizeof(Hz_Table) / sizeof(Hz_Struct); // 计算汉字库数量
+
+    for (index = 0; index < hzSum; index++) { // 查找汉字位置
+        if (china[0] == Hz_Table[index].Hz[0] && china[1] == Hz_Table[index].Hz[1]) {
+            break;
+        }
+    }
+
+    if (index != hzSum) { // 能找到汉字再显示
+        for (u8 i = 0; i < 2; i++) {
+            QF_OLED_Set_Pos(row + i, col);
+            for (u8 j = 0; j < 16; j++) {
+                if ((col + j) > 127) {
+                    QF_OLED_Set_Pos(row + i + 2, (col + j) % 128);
+                }
+                QF_OLED_Write_Com(Hz_Table[index].HzCode[i * 16 + j], 1);
+            }
+        }
+    }
+}
+
+void QF_OLED_Show_Chinese(u8 row, u8 col, u8* china)
+{
+    u8 tChina[2] = { 0 };
+    u16 index = 0;
+
+    while (china[index] != '\0') {
+        tChina[0] = china[index];
+        tChina[1] = china[index + 1];
+        index += 2;
+        QF_OLED_Show_OneChinese(row, col, tChina);
+        col += 16;
         if (col > 127) {
             row += 2;
             col = col % 128;

@@ -21,6 +21,8 @@ void QF_OLED_Off(void);
 void QF_OLED_Set_Pos(u8 row, u8 col);
 void QF_OLED_Show_Char(u8 row, u8 col, u8 ch);
 void QF_OLED_Show_String(u8 row, u8 col, u8* str, ...);
+void QF_OLED_Show_OneChinese(u8 row, u8 col, u8* china);
+void QF_OLED_Show_Chinese(u8 row, u8 col, u8* china);
 void QF_OLED_Show_Pic(void);
 void QF_DELAY_5US(void);
 void QF_OLED_Gpio_Init(void);
