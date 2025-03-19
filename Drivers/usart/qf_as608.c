@@ -110,7 +110,13 @@ void QF_AS608_Add_FR(u16 FR_ID)
 
 void QF_AS608_Del_FR(u16 FR_ID)
 {
-    QF_AS608_DeleteChar(FR_ID, 1);
+    u8 ret = 0;
+    while (1) {
+        ret = QF_AS608_DeleteChar(FR_ID, 1);
+        if (ret == 0x00) {
+            break;
+        }
+    }
 }
 
 void QF_AS608_Get_FR(u16* FR_ID)
@@ -119,32 +125,33 @@ void QF_AS608_Get_FR(u16* FR_ID)
     u8 ret = 0;
     u16 RET_ID = 0;
 
-    if (cnt == 0) {
-        ret = QF_AS608_GetImage();
-        if (ret == 0x00) {
-            cnt++;
-        } else {
-            *FR_ID = 0xFFFF;
-            return;
+    while (1) {
+        if (cnt == 0) {
+            ret = QF_AS608_GetImage();
+            if (ret == 0x00) {
+                cnt++;
+            } else {
+                cnt = 0;
+            }
         }
-    }
 
-    if (cnt == 1) {
-        ret = QF_AS608_GenChar(0x01);
-        if (ret == 0x00) {
-            cnt++;
-        } else {
-            *FR_ID = 0xFFFF;
-            return;
+        if (cnt == 1) {
+            ret = QF_AS608_GenChar(0x01);
+            if (ret == 0x00) {
+                cnt++;
+            } else {
+                cnt = 0;
+            }
         }
-    }
 
-    if (cnt == 2) {
-        ret = QF_AS608_Search(0x01, 0, 255, &RET_ID);
-        if (ret == 0x00) {
-            *FR_ID = RET_ID;
-        } else {
-            *FR_ID = 0xFFFF;
+        if (cnt == 2) {
+            ret = QF_AS608_Search(0x01, 0, 255, &RET_ID);
+            if (ret == 0x00) {
+                *FR_ID = RET_ID;
+            } else {
+                *FR_ID = 0xFFFF;
+            }
+            break;
         }
     }
 }
