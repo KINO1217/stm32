@@ -183,11 +183,11 @@ void QF_OLED_Write_Com(u8 data, u8 com)
 
 void QF_DELAY_5US(void)
 {
-    u8 i = 50;
+    // u8 i = 50;
 
-    while (i--) {
-        __NOP();
-    }
+    // while (i--) {
+    //     __NOP();
+    // }
 }
 
 void QF_OLED_IIC_Start(void)

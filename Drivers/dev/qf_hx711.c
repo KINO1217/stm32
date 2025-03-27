@@ -22,11 +22,11 @@ float QF_HX711_GetWeight(void)
     float weight = 0.0;
     int tempWeight = 0;
 
-    for (u8 i = 0; i < 7; i++) {
+    for (u8 i = 0; i < SMP_NUM; i++) {
         tempWeight += QF_HX711_ReadData();
     }
 
-    tempWeight /= 7;
+    tempWeight /= SMP_NUM;
 
     if (tempWeight > zero)
         weight = (float)(tempWeight - zero) / gapValue;
@@ -38,10 +38,10 @@ float QF_HX711_GetWeight(void)
 
 void QF_HX711_GetZero(void)
 {
-    for (u8 i = 0; i < 7; i++) {
+    for (u8 i = 0; i < SMP_NUM; i++) {
         zero += QF_HX711_ReadData();
     }
-    zero /= 7;
+    zero /= SMP_NUM;
 }
 
 static int QF_HX711_ReadData(void)

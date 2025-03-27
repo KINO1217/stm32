@@ -4,6 +4,8 @@
 #include "qf_sys.h"
 #include "stm32f10x.h"
 
+#define SMP_NUM 1
+
 #define HX711SCK_PORT GPIOB
 #define HX711SCK_PIN GPIO_Pin_9
 #define HX711DAT_PORT GPIOB
