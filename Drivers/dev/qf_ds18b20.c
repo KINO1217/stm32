@@ -11,7 +11,7 @@ void QF_DS18B20_Init(void)
 
 void QF_DS18B20_GetTemp(float* temp)
 {
-    uint8_t TL, TH;
+    uint16_t TL, TH;
 
     QF_DS18B20_Reset();
     QF_DS18B20_WriteByte(0xCC);

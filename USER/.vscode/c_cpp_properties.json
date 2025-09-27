@@ -3,14 +3,14 @@
         {
             "name": "Template",
             "includePath": [
-                "d:\\DesktopFile\\STM32\\Template\\CMSIS",
-                "d:\\DesktopFile\\STM32\\Template\\FWLIB\\inc",
-                "d:\\DesktopFile\\STM32\\Template\\Hardware",
-                "d:\\DesktopFile\\STM32\\Template\\Sys",
-                "D:\\apps\\MDK525\\ARM\\ARMCC\\include",
-                "D:\\apps\\MDK525\\ARM\\ARMCC\\include\\rw",
-                "d:\\DesktopFile\\STM32\\Template\\FWLIB\\src",
-                "d:\\DesktopFile\\STM32\\Template\\USER"
+                "d:\\files\\desktopFile\\Template\\CMSIS",
+                "d:\\files\\desktopFile\\Template\\FWLIB\\inc",
+                "d:\\files\\desktopFile\\Template\\Hardware",
+                "d:\\files\\desktopFile\\Template\\Sys",
+                "D:\\apps\\keil525\\ARM\\ARMCC\\include",
+                "D:\\apps\\keil525\\ARM\\ARMCC\\include\\rw",
+                "d:\\files\\desktopFile\\Template\\FWLIB\\src",
+                "d:\\files\\desktopFile\\Template\\USER"
             ],
             "defines": [
                 "STM32F10X_MD",

@@ -34,6 +34,7 @@
 // #define QF_GPS
 // #define QF_SIM900A
 // #define QF_AS608
+// #define QF_TCPSERVER
 
 // #define QF_SERVO
 
@@ -109,6 +110,10 @@
 
 #ifdef QF_AS608
 #include "qf_as608.h"
+#endif
+
+#ifdef QF_TCPSERVER
+#include "qf_tcpserver.h"
 #endif
 
 #ifdef QF_SERVO
