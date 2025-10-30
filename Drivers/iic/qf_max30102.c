@@ -51,22 +51,26 @@ void QF_MAX30102_GetData(u8* heat, u8* o2)
     uint8_t nums = 0;
     uint32_t redData = 0;
     uint32_t irData = 0;
+    uint8_t loopCnt = 0;
 
-    nums = QF_MAX30102_FIFODataSize();
-    for (u8 i = 0; i < nums; i++) {
-        QF_MAX30102_ReadFIFO(redIrDat);
-        redData += redIrDat[0];
-        irData += redIrDat[1];
+    while(loopCnt<10){
+        nums = QF_MAX30102_FIFODataSize();
+        for (u8 i = 0; i < nums; i++) {
+            QF_MAX30102_ReadFIFO(redIrDat);
+            redData += redIrDat[0];
+            irData += redIrDat[1];
+        }
+        loopCnt+=nums;
     }
 
     if (nums != 0) {
-        redData /= nums;
-        irData /= nums;
+        redData /= loopCnt;
+        irData /= loopCnt;
     }
 
-    if (redData > 5000 && irData > 5000) {
-        mheat = redData / 1800;
-        mo2 = irData / 1400;
+    if (redData > 50000 && irData > 50000) {
+        mheat = redData / 1450;
+        mo2 = irData / 1350;
     } else {
         mheat = 0;
         mo2 = 0;

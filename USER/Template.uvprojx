@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS;..\FWLIB\inc;..\Hardware;..\Sys</IncludePath>
+              <IncludePath>..\CMSIS;..\FWLIB\inc;..\Hardware;..\Sys;..\QR_Code</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -534,6 +534,9 @@
               <FilePath>..\FWLIB\src\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>QRCode</GroupName>
         </Group>
         <Group>
           <GroupName>Sys</GroupName>

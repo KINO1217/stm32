@@ -9,7 +9,7 @@ void QF_FLASH_ErasePage(u32 addr)
     FLASH_Lock();
 }
 
-void QF_FLASH_Write(u32 addr, u8* data, u16 data_len) // ???1K????
+void QF_FLASH_Write(u32 addr, u8* data, u16 data_len) // Ð´Êý¾Ý
 {
     FLASH_Unlock();
     FLASH_ClearFlag(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPRTERR | FLASH_FLAG_OPTERR);

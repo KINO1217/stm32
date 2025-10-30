@@ -1,7 +1,6 @@
 #include "qf_conf.h"
 #include "qf_delay.h"
 #include "qf_driver_conf.h"
-#include "qf_tcpserver.h"
 
 int main()
 {
@@ -10,9 +9,8 @@ int main()
     QF_RCC_Conf();
     QF_DELAY_Init();
 
-    // 模块及外设初始化
-
-    while (1) {
+    while (1)
+    {
         
         QF_DELAY_Ms(5);
     }
