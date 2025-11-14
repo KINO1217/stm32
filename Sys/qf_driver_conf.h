@@ -23,6 +23,7 @@
 // #define QF_MOTOR
 // #define QF_HX711
 // #define QF_IRRECV
+// #define QF_IRSEND
 // #define QF_MARTIX_KEY
 
 // #define QF_OLED
@@ -74,6 +75,10 @@
 
 #ifdef QF_IRRECV
 #include "qf_ir_recv.h"
+#endif
+
+#ifdef QF_IRSEND
+#include "qf_ir_send.h"
 #endif
 
 #ifdef QF_MARTIX_KEY
