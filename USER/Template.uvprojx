@@ -581,6 +581,11 @@
               <FileType>1</FileType>
               <FilePath>..\Sys\qf_flash.c</FilePath>
             </File>
+            <File>
+              <FileName>qf_iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Sys\qf_iic.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

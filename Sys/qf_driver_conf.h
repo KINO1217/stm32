@@ -11,6 +11,7 @@
 #include "stdlib.h"
 #include "stm32f10x.h"
 #include "string.h"
+#include "qf_iic.h"
 
 /**
  * 驱动文件定义
