@@ -1,8 +1,4 @@
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\apps\keil525\ARM\ARMCC\Bin'
 Build target 'Template'
-compiling main.c...
-linking...
-Program Size: Code=2584 RO-data=268 RW-data=68 ZI-data=1412  
-FromELF: creating hex file...
 "..\OBJ\Template.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:00

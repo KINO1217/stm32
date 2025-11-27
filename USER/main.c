@@ -8,6 +8,8 @@ int main()
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     QF_RCC_Conf();
     QF_DELAY_Init();
+    
+    // Ä£¿é³õÊ¼»¯
 
     while (1)
     {

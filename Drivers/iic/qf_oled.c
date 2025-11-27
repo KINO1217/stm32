@@ -67,7 +67,7 @@ void QF_OLED_Set_Pos(u8 row, u8 col)
     QF_OLED_Write_Com(0x10 + ((0xF0 & col) >> 4), 0);
 }
 
-void QF_OLED_Show_Char(u8 row, u8 col, u8 ch)
+void QF_OLED_Show_Char(u8 row, u8 col,u8 sm, u8 ch)
 {
     if (row > 7 || col > 127)
         return;
@@ -80,12 +80,15 @@ void QF_OLED_Show_Char(u8 row, u8 col, u8 ch)
             if ((col + j) > 127) {
                 QF_OLED_Set_Pos(row + i + 2, (col + j) % 128);
             }
-            QF_OLED_Write_Com(cFont8X16[index][i * 8 + j], 1);
+            if(sm==0)
+                QF_OLED_Write_Com(cFont8X16[index][i * 8 + j], 1);
+            else if(sm==1)
+                QF_OLED_Write_Com(~cFont8X16[index][i * 8 + j], 1);
         }
     }
 }
 
-void QF_OLED_Show_String(u8 row, u8 col, u8* str, ...)
+void QF_OLED_Show_String(u8 row, u8 col, u8 sm, u8* str, ...)
 {
     u8 tempStr[16];
     u8 len = 0;
@@ -96,7 +99,7 @@ void QF_OLED_Show_String(u8 row, u8 col, u8* str, ...)
     va_end(vaList); // Æ´½Ó×Ö·û´®
 
     while (tempStr[len] != '\0') {
-        QF_OLED_Show_Char(row, col, tempStr[len]);
+        QF_OLED_Show_Char(row, col, tempStr[len],sm);
         len++;
         col += 8;
         if (col > 127) {
