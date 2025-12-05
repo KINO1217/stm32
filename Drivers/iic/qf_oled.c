@@ -99,7 +99,7 @@ void QF_OLED_Show_String(u8 row, u8 col, u8 sm, u8* str, ...)
     va_end(vaList); // Æ´½Ó×Ö·û´®
 
     while (tempStr[len] != '\0') {
-        QF_OLED_Show_Char(row, col, tempStr[len],sm);
+        QF_OLED_Show_Char(row, col, sm,tempStr[len]);
         len++;
         col += 8;
         if (col > 127) {
