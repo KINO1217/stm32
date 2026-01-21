@@ -38,6 +38,7 @@
 // #define QF_SIM900A
 // #define QF_AS608
 // #define QF_TCPSERVER
+// #define QF_ZW101
 
 // #define QF_SERVO
 
@@ -126,6 +127,10 @@
 
 #ifdef QF_TCPSERVER
 #include "qf_tcpserver.h"
+#endif
+
+#ifdef QF_ZW101
+#include "zw101.h"
 #endif
 
 #ifdef QF_SERVO
