@@ -153,12 +153,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>zid,0x0A</ItemText>
+          <ItemText>un_max,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>cnt</ItemText>
+          <ItemText>un_min,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
