@@ -5,6 +5,10 @@
 
 void QF_OLED_Init(void)
 {
+    uint32_t i=0;
+    i=720000;
+    while(i--);
+    
     QF_OLED_Gpio_Init();
 
     QF_OLED_Write_Com(0xA8, 0);

@@ -4,9 +4,9 @@
 #include "stm32f10x.h"
 
 #define SDA_GPIO GPIOB
-#define SDA_PIN GPIO_Pin_12
+#define SDA_PIN GPIO_Pin_9
 #define SCL_GPIO GPIOB
-#define SCL_PIN GPIO_Pin_13
+#define SCL_PIN GPIO_Pin_8
 
 #define SDA_H GPIO_SetBits(SDA_GPIO, SDA_PIN)
 #define SDA_L GPIO_ResetBits(SDA_GPIO, SDA_PIN)
