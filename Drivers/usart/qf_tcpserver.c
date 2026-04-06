@@ -98,9 +98,11 @@ void QF_TCPSERVER_Init(void)
 
 void QF_TCPSERVER_SendString(u8* data,u16 data_len)
 {    
-    QF_UART_Printf(USART3, (u8*)"AT+CIPSEND=0,%d\r\n",data_len);
-    QF_DELAY_Ms(100);
-    QF_UART_Printf(USART3, (u8*)data);
+	if(setCode == 9 && tcpClientConnected == 1){
+		QF_UART_Printf(USART3, (u8*)"AT+CIPSEND=0,%d\r\n",data_len);
+		QF_DELAY_Ms(100);
+		QF_UART_Printf(USART3, (u8*)data);
+	}
 }
 
 u8 QF_TCPSERVER_Verify(char* verify, int timeout)
