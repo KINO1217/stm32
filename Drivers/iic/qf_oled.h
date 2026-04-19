@@ -1,52 +1,35 @@
-#ifndef __QF_OLED_H
-#define __QF_OLED_H
+#ifndef __QF_OLED_H__
+#define __QF_OLED_H__
 
 #include "stm32f10x.h"
 
-/* OLED基本参数 */
-#define QF_OLED_WIDTH          128
-#define QF_OLED_HEIGHT         64
-#define QF_OLED_PAGE_NUM       8
+#define SDA_GPIO GPIOB
+#define SDA_PIN GPIO_Pin_12
+#define SCL_GPIO GPIOB
+#define SCL_PIN GPIO_Pin_13
 
-/* OLED IIC写地址 */
-#define QF_OLED_IIC_ADDR       0x78
+#define SDA_H GPIO_SetBits(SDA_GPIO, SDA_PIN)
+#define SDA_L GPIO_ResetBits(SDA_GPIO, SDA_PIN)
+#define SDA_IN GPIO_ReadInputDataBit(SDA_GPIO, SDA_PIN)
+#define SCL_H GPIO_SetBits(SCL_GPIO, SCL_PIN)
+#define SCL_L GPIO_ResetBits(SCL_GPIO, SCL_PIN)
 
-/* 引脚定义 */
-#define QF_OLED_SDA_PORT       GPIOB
-#define QF_OLED_SDA_PIN        GPIO_Pin_12
-
-#define QF_OLED_SCL_PORT       GPIOB
-#define QF_OLED_SCL_PIN        GPIO_Pin_13
-
-/* printf缓冲区长度 */
-#define QF_OLED_PRINTF_BUF_LEN 64
-
-/* OLED显存 */
-extern uint8_t QF_OLED_GRAM[QF_OLED_PAGE_NUM][QF_OLED_WIDTH];
-
-/* 基础接口 */
 void QF_OLED_Init(void);
 void QF_OLED_Clear(void);
-void QF_OLED_Fill(uint8_t data);
-void QF_OLED_Refresh(void);
-
-/* 显示控制 */
-void QF_OLED_DisplayOn(void);
-void QF_OLED_DisplayOff(void);
-
-/* 绘图接口 */
-void QF_OLED_DrawPoint(uint8_t x, uint8_t y, uint8_t t);
-void QF_OLED_ClearArea(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
-
-/* 文本接口 */
-void QF_OLED_ShowChar8x16(uint8_t x, uint8_t y, char chr);
-void QF_OLED_ShowString8x16(uint8_t x, uint8_t y, const char *str);
-
-/* 数字接口 */
-void QF_OLED_ShowNum(uint8_t x, uint8_t y, uint32_t num, uint8_t len);
-void QF_OLED_ShowHexNum(uint8_t x, uint8_t y, uint32_t num, uint8_t len);
-
-/* Printf增强接口 */
-void QF_OLED_Printf8x16(uint8_t x, uint8_t y, const char *format, ...);
+void QF_OLED_On(void);
+void QF_OLED_Off(void);
+void QF_OLED_Set_Pos(u8 row, u8 col);
+void QF_OLED_Show_Char(u8 row, u8 col, u8 sm, u8 ch);
+void QF_OLED_Show_String(u8 row, u8 col, u8 sm, u8 *str, ...);
+void QF_OLED_Show_OneChinese(u8 row, u8 col, u8 *china);
+void QF_OLED_Show_Chinese(u8 row, u8 col, u8 *china);
+void QF_OLED_Show_Pic(void);
+void QF_DELAY_5US(void);
+void QF_OLED_Gpio_Init(void);
+void QF_OLED_IIC_Start(void);
+void QF_OLED_IIC_Stop(void);
+void QF_OLED_IIC_Send_Byte(u8 data);
+u8 QF_OLED_IIC_GetAck(void);
+void QF_OLED_Write_Com(u8 data, u8 com);
 
 #endif
