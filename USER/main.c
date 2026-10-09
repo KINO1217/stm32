@@ -8,9 +8,9 @@ int main()
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     QF_RCC_Conf();
     QF_DELAY_Init();
-    
-    // 模块初始化
 
+    // 模块初始化
+    
     while (1)
     {
         QF_DELAY_Ms(5);

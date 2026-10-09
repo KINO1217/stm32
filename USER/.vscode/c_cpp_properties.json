@@ -3,15 +3,15 @@
         {
             "name": "Template",
             "includePath": [
-                "d:\\files\\desktopFile\\Template\\CMSIS",
-                "d:\\files\\desktopFile\\Template\\FWLIB\\inc",
-                "d:\\files\\desktopFile\\Template\\Hardware",
-                "d:\\files\\desktopFile\\Template\\Sys",
-                "d:\\files\\desktopFile\\Template\\QR_Code",
-                "D:\\apps\\keil525\\ARM\\ARMCC\\include",
-                "D:\\apps\\keil525\\ARM\\ARMCC\\include\\rw",
-                "d:\\files\\desktopFile\\Template\\FWLIB\\src",
-                "d:\\files\\desktopFile\\Template\\USER"
+                "d:\\DesktopFile\\Template\\CMSIS",
+                "d:\\DesktopFile\\Template\\FWLIB\\inc",
+                "d:\\DesktopFile\\Template\\Hardware",
+                "d:\\DesktopFile\\Template\\Sys",
+                "d:\\DesktopFile\\Template\\QR_Code",
+                "D:\\Apps\\KEIL525\\ARM\\ARMCC\\include",
+                "D:\\Apps\\KEIL525\\ARM\\ARMCC\\include\\rw",
+                "d:\\DesktopFile\\Template\\FWLIB\\src",
+                "d:\\DesktopFile\\Template\\USER"
             ],
             "defines": [
                 "STM32F10X_MD",
